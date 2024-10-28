@@ -20,23 +20,20 @@ struct Main2: View {
     @State private var journalEntries: [JournalEntry] = [
         JournalEntry(title: "my birthday", date: "02/02/2024", content: "now i am dreaming and you're singing at my birthday and i've never seen you smiling so big, its nautical themed and theres something im supposed to say but cant for the life of me remember what it is.", isBookmarked: false),
         JournalEntry(title: "I get you, sabrina", date: "15/10/2024", content: "i'm also looking for the answer between the lines, they're confused and i'm upset but we somehow STILL DIDNT TALK ABOUT IT???????????????", isBookmarked: true),
-        JournalEntry(title: "wtf is happening", date: "20/10/2024", content: "okay..", isBookmarked: false),
+        JournalEntry(title: "?", date: "20/10/2024", content: "okay..", isBookmarked: false),
         JournalEntry(title: "here's why I think taylor swift stole the song The Black Dog from me", date: "23/10/2024", content: "i dont think a white woman gets having six weeks of breathing clear air and still missing the smoke, or being maken fun of with some esoteric joke, or wanting to sell your house and set fire to all your clothes and hire a priest to come and exorcise your demons even if you die screaming, more than I do.", isBookmarked: false)
     ]
     @State private var showAddEntry = false
     @State private var isEditing = false
     @State private var selectedEntry: JournalEntry? = nil
 
-
     enum FilterOption {
         case all, bookmarked, recent
     }
 
-
     var filteredEntries: [JournalEntry] {
         var filtered = journalEntries
         
-   
         switch filterOption {
         case .all:
             break
@@ -65,7 +62,6 @@ struct Main2: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 16) {
-                 
                     HStack {
                         Text("Journal")
                             .foregroundColor(.white)
@@ -73,7 +69,6 @@ struct Main2: View {
                             .fontWeight(.bold)
                         
                         Spacer()
-                        
                         
                         Menu {
                             Button("All Entries", action: { filterOption = .all })
@@ -85,8 +80,9 @@ struct Main2: View {
                                 .font(.system(size: 24))
                         }
                         
-                        
                         Button(action: {
+                            isEditing = false
+                            selectedEntry = nil
                             showAddEntry.toggle()
                         }) {
                             Image(systemName: "plus")
@@ -100,13 +96,11 @@ struct Main2: View {
                     .padding()
                     
                     ZStack {
-                        
                         RoundedRectangle(cornerRadius: 15)
                             .fill(Color.gray.opacity(0.2))
                             .frame(width: 370, height: 50)
 
                         HStack {
-                          
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(.gray)
                                 .padding(.leading, 10.0)
@@ -116,9 +110,7 @@ struct Main2: View {
                                 .padding(10)
                                 .background(Color.clear)
 
-                            Button(action: {
-                                
-                            }) {
+                            Button(action: {}) {
                                 Image(systemName: "mic")
                                     .foregroundColor(.gray)
                                     .padding(.trailing, 10)
@@ -142,7 +134,7 @@ struct Main2: View {
                                     isEditing = true
                                     showAddEntry.toggle()
                                 } label: {
-                                    Label("Edit", systemImage: "pencil")
+                                   Image(systemName: "pencil")
                                 }
                                 .tint(.blue)
                             }
@@ -150,22 +142,18 @@ struct Main2: View {
                                 Button(role: .destructive) {
                                     deleteEntry(entry: entry)
                                 } label: {
-                                    Label("Delete", systemImage: "trash")
+                                    Image(systemName: "trash")
                                 }
                             }
                         }
                     }
                     .listStyle(PlainListStyle())
-                    .background(Color.black) // Ensure the
+                    .background(Color.black)
                 }
             }
         }
         .accentColor(.white)
-        .sheet(isPresented: $showAddEntry) {
-            AddJournalEntryView(journalEntries: $journalEntries, isEditing: $isEditing, selectedEntry: $selectedEntry)
-        }
     }
-    
     
     func deleteEntry(entry: JournalEntry) {
         if let index = journalEntries.firstIndex(where: { $0.id == entry.id }) {
@@ -213,8 +201,6 @@ struct JournalRow: View {
 
 // MARK: - AddJournalEntryView
 
-import SwiftUI
-
 struct AddJournalEntryView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var journalEntries: [JournalEntry]
@@ -225,39 +211,33 @@ struct AddJournalEntryView: View {
     @State private var content = ""
     @State private var date = Date()
     
-   
     @FocusState private var titleIsFocused: Bool
     @FocusState private var contentIsFocused: Bool
 
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
-                // Title input
                 TextField("Title", text: $title)
                     .focused($titleIsFocused)
                     .font(.system(size: 28, weight: .bold))
                     .foregroundColor(.white)
-                    //.padding()
-                    .background(Color.bg)
+                    .background(Color.black.opacity(0.2))
                     .cornerRadius(8)
                     .onTapGesture {
                         titleIsFocused = true
                     }
 
-                
                 HStack {
                     Text(dateFormatted(date))
-                        .foregroundColor(.tx2)
+                        .foregroundColor(.gray)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
-                // Journal content input
-                TextField("Type your Journal...", text: $content)
+                TextField("Type your Journal...", text: $content, axis:.vertical)
                     .focused($contentIsFocused)
                     .foregroundColor(.white)
                     .font(.body)
-                    //.padding()
-                    .background(Color.bg)
+                    .background(Color.black.opacity(0.2))
                     .cornerRadius(8)
                     .onTapGesture {
                         contentIsFocused = true
@@ -266,7 +246,7 @@ struct AddJournalEntryView: View {
                 Spacer()
             }
             .padding()
-            .background(Color.bg)
+            .background(Color.black)
             .navigationBarItems(
                 leading: Button("Cancel") {
                     dismiss()
@@ -285,11 +265,6 @@ struct AddJournalEntryView: View {
                     date = dateFromString(entry.date) ?? Date()
                 }
             }
-            .onDisappear {
-                
-                titleIsFocused = false
-                contentIsFocused = false
-            }
         }
         .background(Color.black)
     }
@@ -305,14 +280,12 @@ struct AddJournalEntryView: View {
         }
     }
 
-    
     func dateFormatted(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         return formatter.string(from: date)
     }
 
-    
     func dateFromString(_ dateString: String) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
@@ -320,31 +293,9 @@ struct AddJournalEntryView: View {
     }
 }
 
-// MARK: - Placeholder Modifier
-struct PlaceholderModifier: ViewModifier {
-    var showPlaceholder: Bool
-    var placeholder: String
-
-    func body(content: Content) -> some View {
-        ZStack(alignment: .leading) {
-            content
-                .opacity(showPlaceholder ? 0 : 1)
-            if showPlaceholder {
-                Text(placeholder)
-                    .foregroundColor(.gray)
-                    .padding(.leading, 5)
-            }
-        }
-    }
-}
-
-extension View {
-    func placeholder(when shouldShow: Bool, placeholder: String) -> some View {
-        self.modifier(PlaceholderModifier(showPlaceholder: shouldShow, placeholder: placeholder))
-    }
-}
-
 #Preview {
     Main2()
 }
 
+
+// this is my original code, make a database where if i add a new journal entry it is saved
