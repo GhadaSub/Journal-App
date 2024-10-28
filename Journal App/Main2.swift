@@ -3,47 +3,33 @@
 //  Journal App
 //
 //  Created by Ghada Alsubaie on 19/04/1446 AH.
-//
+
 import SwiftUI
 
-struct JournalEntry: Identifiable {
-    let id = UUID()
-    var title: String
-    var date: String
-    var content: String
-    var isBookmarked: Bool = false
-}
-
 struct Main2: View {
+    @EnvironmentObject var viewModel: JournalViewModel
     @State private var searchText = ""
     @State private var filterOption: FilterOption = .all
-    @State private var journalEntries: [JournalEntry] = [
-        JournalEntry(title: "my birthday", date: "02/02/2024", content: "now i am dreaming and you're singing at my birthday and i've never seen you smiling so big, its nautical themed and theres something im supposed to say but cant for the life of me remember what it is.", isBookmarked: false),
-        JournalEntry(title: "I get you, sabrina", date: "15/10/2024", content: "i'm also looking for the answer between the lines, they're confused and i'm upset but we somehow STILL DIDNT TALK ABOUT IT???????????????", isBookmarked: true),
-        JournalEntry(title: "?", date: "20/10/2024", content: "okay..", isBookmarked: false),
-        JournalEntry(title: "here's why I think taylor swift stole the song The Black Dog from me", date: "23/10/2024", content: "i dont think a white woman gets having six weeks of breathing clear air and still missing the smoke, or being maken fun of with some esoteric joke, or wanting to sell your house and set fire to all your clothes and hire a priest to come and exorcise your demons even if you die screaming, more than I do.", isBookmarked: false)
-    ]
     @State private var showAddEntry = false
     @State private var isEditing = false
     @State private var selectedEntry: JournalEntry? = nil
 
-    enum FilterOption {
+    enum FilterOption: String, CaseIterable {
         case all, bookmarked, recent
     }
 
     var filteredEntries: [JournalEntry] {
-        var filtered = journalEntries
-        
+        var filtered = viewModel.myJournalEntries
+
         switch filterOption {
-        case .all:
-            break
         case .bookmarked:
             filtered = filtered.filter { $0.isBookmarked }
         case .recent:
             filtered = filtered.sorted { $0.date > $1.date }
+        case .all:
+            break
         }
-        
-        // Apply search filter
+
         if !searchText.isEmpty {
             filtered = filtered.filter {
                 $0.title.localizedCaseInsensitiveContains(searchText) ||
@@ -51,50 +37,75 @@ struct Main2: View {
                 $0.content.localizedCaseInsensitiveContains(searchText)
             }
         }
-        
+
         return filtered
     }
 
     var body: some View {
         NavigationView {
             ZStack {
-                Color.black
-                    .ignoresSafeArea()
-                
+                Color.black.ignoresSafeArea()
+
                 VStack(spacing: 16) {
+                    HStack {
+                        Spacer()
+                        ZStack {
+                            Circle()
+                                .fill(Color.gray.opacity(0.3))
+                                .frame(width: 44, height: 44)
+
+                            Menu {
+                                ForEach(FilterOption.allCases, id: \.self) { option in
+                                    Button(action: {
+                                        filterOption = (filterOption == option) ? .all : option
+                                    }) {
+                                        HStack {
+                                            Text(option.rawValue.capitalized)
+                                            if filterOption == option {
+                                                Image(systemName: "checkmark")
+                                            }
+                                        }
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "line.3.horizontal.decrease")
+                                    .foregroundColor(.lvndr)
+                                    .font(.system(size: 24))
+                            }
+                        }
+
+                        ZStack {
+                            Circle()
+                                .fill(Color.gray.opacity(0.3))
+                                .frame(width: 44, height: 44)
+
+                            Button(action: {
+                                isEditing = false
+                                selectedEntry = nil
+                                showAddEntry.toggle()
+                            }) {
+                                Image(systemName: "plus")
+                                    .foregroundColor(.lvndr)
+                                    .font(.system(size: 24))
+                            }
+                            .sheet(isPresented: $showAddEntry) {
+                                AddJournalEntryView(isEditing: $isEditing, selectedEntry: $selectedEntry)
+                                    .environmentObject(viewModel)
+                            }
+                        }
+                    }
+                    .padding()
+
                     HStack {
                         Text("Journal")
                             .foregroundColor(.white)
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                        
+                            .padding(.top, -50)
+                            .padding(.leading)
                         Spacer()
-                        
-                        Menu {
-                            Button("All Entries", action: { filterOption = .all })
-                            Button("Bookmark", action: { filterOption = .bookmarked })
-                            Button("Recent", action: { filterOption = .recent })
-                        } label: {
-                            Image(systemName: "line.3.horizontal.decrease")
-                                .foregroundColor(.lvndr)
-                                .font(.system(size: 24))
-                        }
-                        
-                        Button(action: {
-                            isEditing = false
-                            selectedEntry = nil
-                            showAddEntry.toggle()
-                        }) {
-                            Image(systemName: "plus")
-                                .foregroundColor(.lvndr)
-                                .font(.system(size: 24))
-                        }
-                        .sheet(isPresented: $showAddEntry) {
-                            AddJournalEntryView(journalEntries: $journalEntries, isEditing: $isEditing, selectedEntry: $selectedEntry)
-                        }
                     }
-                    .padding()
-                    
+
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
                             .fill(Color.gray.opacity(0.2))
@@ -108,7 +119,6 @@ struct Main2: View {
                             TextField("Search", text: $searchText)
                                 .foregroundColor(.white)
                                 .padding(10)
-                                .background(Color.clear)
 
                             Button(action: {}) {
                                 Image(systemName: "mic")
@@ -119,46 +129,66 @@ struct Main2: View {
                         .padding(.horizontal)
                     }
 
-                    List {
-                        ForEach(filteredEntries) { entry in
-                            JournalRow(entry: entry, toggleBookmark: {
-                                if let index = journalEntries.firstIndex(where: { $0.id == entry.id }) {
-                                    journalEntries[index].isBookmarked.toggle()
+                    if viewModel.myJournalEntries.isEmpty {
+                        VStack(spacing: 20) {
+                            Spacer()
+                            Image("logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+
+                            Text("Begin Your Journal")
+                                .foregroundColor(.lvndr)
+                                .font(.system(size: 24))
+                                .font(.title)
+                                .fontWeight(.bold)
+                                
+
+                            Text("Craft your personal diary, tap the plus icon to begin")
+                                .font(.system(size: 18))
+                                .foregroundColor(.white)
+                                .font(.subheadline)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, -55)
+                                .padding(.horizontal, 40)
+                                .frame(width: 350, height: 90)
+
+                            Spacer()
+                        }
+                        .padding(.top, -60)
+                    } else {
+                        List {
+                            ForEach(filteredEntries) { entry in
+                                JournalRow(entry: entry) {
+                                    viewModel.toggleBookmark(for: entry)
                                 }
-                            })
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                            .swipeActions(edge: .leading) {
-                                Button {
-                                    selectedEntry = entry
-                                    isEditing = true
-                                    showAddEntry.toggle()
-                                } label: {
-                                   Image(systemName: "pencil")
+                                .listRowInsets(EdgeInsets())
+                                .listRowBackground(Color.clear)
+                                .swipeActions(edge: .leading) {
+                                    Button {
+                                        selectedEntry = entry
+                                        isEditing = true
+                                        showAddEntry.toggle()
+                                    } label: {
+                                        Image(systemName: "pencil")
+                                    }
+                                    .tint(.blue)
                                 }
-                                .tint(.blue)
-                            }
-                            .swipeActions(edge: .trailing) {
-                                Button(role: .destructive) {
-                                    deleteEntry(entry: entry)
-                                } label: {
-                                    Image(systemName: "trash")
+                                .swipeActions(edge: .trailing) {
+                                    Button(role: .destructive) {
+                                        viewModel.deleteEntry(entry)
+                                    } label: {
+                                        Image(systemName: "trash")
+                                    }
                                 }
                             }
                         }
+                        .listStyle(PlainListStyle())
                     }
-                    .listStyle(PlainListStyle())
-                    .background(Color.black)
                 }
             }
         }
         .accentColor(.white)
-    }
-    
-    func deleteEntry(entry: JournalEntry) {
-        if let index = journalEntries.firstIndex(where: { $0.id == entry.id }) {
-            journalEntries.remove(at: index)
-        }
     }
 }
 
@@ -203,14 +233,14 @@ struct JournalRow: View {
 
 struct AddJournalEntryView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var journalEntries: [JournalEntry]
+    @EnvironmentObject var viewModel: JournalViewModel
     @Binding var isEditing: Bool
     @Binding var selectedEntry: JournalEntry?
 
     @State private var title = ""
     @State private var content = ""
     @State private var date = Date()
-    
+
     @FocusState private var titleIsFocused: Bool
     @FocusState private var contentIsFocused: Bool
 
@@ -221,7 +251,6 @@ struct AddJournalEntryView: View {
                     .focused($titleIsFocused)
                     .font(.system(size: 28, weight: .bold))
                     .foregroundColor(.white)
-                    .background(Color.black.opacity(0.2))
                     .cornerRadius(8)
                     .onTapGesture {
                         titleIsFocused = true
@@ -233,11 +262,10 @@ struct AddJournalEntryView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
-                TextField("Type your Journal...", text: $content, axis:.vertical)
+                TextField("Type your Journal...", text: $content, axis: .vertical)
                     .focused($contentIsFocused)
                     .foregroundColor(.white)
                     .font(.body)
-                    .background(Color.black.opacity(0.2))
                     .cornerRadius(8)
                     .onTapGesture {
                         contentIsFocused = true
@@ -246,7 +274,7 @@ struct AddJournalEntryView: View {
                 Spacer()
             }
             .padding()
-            .background(Color.black)
+            .background(Color.grayish)
             .navigationBarItems(
                 leading: Button("Cancel") {
                     dismiss()
@@ -266,17 +294,15 @@ struct AddJournalEntryView: View {
                 }
             }
         }
-        .background(Color.black)
+        .background(Color.grayish)
     }
 
     private func saveEntry() {
-        if isEditing, let entry = selectedEntry, let index = journalEntries.firstIndex(where: { $0.id == entry.id }) {
-            journalEntries[index].title = title
-            journalEntries[index].content = content
-            journalEntries[index].date = dateFormatted(date)
+        if isEditing, let entry = selectedEntry {
+            let updatedEntry = JournalEntry(title: title, date: dateFormatted(date), content: content)
+            viewModel.updateEntry(entry, with: updatedEntry)
         } else {
-            let newEntry = JournalEntry(title: title, date: dateFormatted(date), content: content)
-            journalEntries.append(newEntry)
+            viewModel.addEntry(title: title, content: content)
         }
     }
 
@@ -295,7 +321,5 @@ struct AddJournalEntryView: View {
 
 #Preview {
     Main2()
+        .environmentObject(JournalViewModel())
 }
-
-
-// this is my original code, make a database where if i add a new journal entry it is saved

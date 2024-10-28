@@ -13,9 +13,10 @@
 		451C9BF22CC5178A00AD3F19 /* Journal_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BF12CC5178A00AD3F19 /* Journal_AppTests.swift */; };
 		451C9BFC2CC5178A00AD3F19 /* Journal_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BFB2CC5178A00AD3F19 /* Journal_AppUITests.swift */; };
 		451C9BFE2CC5178A00AD3F19 /* Journal_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BFD2CC5178A00AD3F19 /* Journal_AppUITestsLaunchTests.swift */; };
-		451C9C0D2CC628E400AD3F19 /* MainPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9C0C2CC628E400AD3F19 /* MainPage1.swift */; };
 		451C9C132CC7743400AD3F19 /* Main2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9C122CC7743400AD3F19 /* Main2.swift */; };
+		456074262CCEE876000D4749 /* JournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456074252CCEE876000D4749 /* JournalViewModel.swift */; };
 		4582DD392CC941FA0036BA7C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4582DD382CC941FA0036BA7C /* Media.xcassets */; };
+		459C10EA2CCEE43A003189AD /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459C10E92CCEE43A003189AD /* JournalEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,9 +46,10 @@
 		451C9BF72CC5178A00AD3F19 /* Journal AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Journal AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C9BFB2CC5178A00AD3F19 /* Journal_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal_AppUITests.swift; sourceTree = "<group>"; };
 		451C9BFD2CC5178A00AD3F19 /* Journal_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		451C9C0C2CC628E400AD3F19 /* MainPage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage1.swift; sourceTree = "<group>"; };
 		451C9C122CC7743400AD3F19 /* Main2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main2.swift; sourceTree = "<group>"; tabWidth = 3; };
+		456074252CCEE876000D4749 /* JournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewModel.swift; sourceTree = "<group>"; };
 		4582DD382CC941FA0036BA7C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		459C10E92CCEE43A003189AD /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +100,10 @@
 		451C9BDF2CC5178900AD3F19 /* Journal App */ = {
 			isa = PBXGroup;
 			children = (
+				459C10E92CCEE43A003189AD /* JournalEntry.swift */,
+				456074252CCEE876000D4749 /* JournalViewModel.swift */,
 				451C9BE02CC5178900AD3F19 /* Journal_AppApp.swift */,
 				451C9BE22CC5178900AD3F19 /* ContentView.swift */,
-				451C9C0C2CC628E400AD3F19 /* MainPage1.swift */,
 				451C9C122CC7743400AD3F19 /* Main2.swift */,
 				4582DD382CC941FA0036BA7C /* Media.xcassets */,
 				451C9BE62CC5178A00AD3F19 /* Preview Content */,
@@ -263,9 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				456074262CCEE876000D4749 /* JournalViewModel.swift in Sources */,
 				451C9BE32CC5178900AD3F19 /* ContentView.swift in Sources */,
 				451C9C132CC7743400AD3F19 /* Main2.swift in Sources */,
-				451C9C0D2CC628E400AD3F19 /* MainPage1.swift in Sources */,
+				459C10EA2CCEE43A003189AD /* JournalEntry.swift in Sources */,
 				451C9BE12CC5178900AD3F19 /* Journal_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

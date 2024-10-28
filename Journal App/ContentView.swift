@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var viewModel: JournalViewModel
     @State private var isActive = false
 
     var body: some View {
         ZStack {
             if isActive {
-                // Replace this with your main app view
                 Main2()
             } else {
                 ZStack {
-                    // Create a gradient background
                     LinearGradient(
                         gradient: Gradient(colors: [.topbg, .black]),
                         startPoint: .top,
@@ -27,8 +26,9 @@ struct ContentView: View {
 
                     VStack {
                         Image("logo")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120, height: 120)
                         Text("Journali")
                             .foregroundColor(.white)
                             .font(.largeTitle)
@@ -39,7 +39,6 @@ struct ContentView: View {
                     .padding()
                 }
                 .onAppear {
-                    // Simulate a delay for the splash screen (e.g., 2 seconds)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         withAnimation {
                             isActive = true
@@ -72,5 +71,6 @@ extension Color {
 
 #Preview {
     ContentView()
+        .environmentObject(JournalViewModel())
 }
 
