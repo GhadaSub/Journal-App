@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		451C9BE12CC5178900AD3F19 /* JournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BE02CC5178900AD3F19 /* JournalApp.swift */; };
+		451C9BE12CC5178900AD3F19 /* Journal_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BE02CC5178900AD3F19 /* Journal_AppApp.swift */; };
 		451C9BE32CC5178900AD3F19 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BE22CC5178900AD3F19 /* ContentView.swift */; };
 		451C9BE82CC5178A00AD3F19 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 451C9BE72CC5178A00AD3F19 /* Preview Assets.xcassets */; };
 		451C9BF22CC5178A00AD3F19 /* Journal_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BF12CC5178A00AD3F19 /* Journal_AppTests.swift */; };
 		451C9BFC2CC5178A00AD3F19 /* Journal_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BFB2CC5178A00AD3F19 /* Journal_AppUITests.swift */; };
 		451C9BFE2CC5178A00AD3F19 /* Journal_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9BFD2CC5178A00AD3F19 /* Journal_AppUITestsLaunchTests.swift */; };
-		451C9C132CC7743400AD3F19 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9C122CC7743400AD3F19 /* MainView.swift */; };
+		451C9C132CC7743400AD3F19 /* Main2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C9C122CC7743400AD3F19 /* Main2.swift */; };
 		456074262CCEE876000D4749 /* JournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456074252CCEE876000D4749 /* JournalViewModel.swift */; };
-		4560742E2CD05B3D000D4749 /* AddJournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4560742D2CD05B3D000D4749 /* AddJournalEntryView.swift */; };
+		456074282CCF6F8E000D4749 /* ModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456074272CCF6F8E000D4749 /* ModelView.swift */; };
 		4582DD392CC941FA0036BA7C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4582DD382CC941FA0036BA7C /* Media.xcassets */; };
 		459C10EA2CCEE43A003189AD /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459C10E92CCEE43A003189AD /* JournalEntry.swift */; };
 /* End PBXBuildFile section */
@@ -38,18 +38,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		451C9BDD2CC5178900AD3F19 /* Journali.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journali.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		451C9BE02CC5178900AD3F19 /* JournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalApp.swift; sourceTree = "<group>"; };
+		451C9BDD2CC5178900AD3F19 /* Journal App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Journal App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		451C9BE02CC5178900AD3F19 /* Journal_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal_AppApp.swift; sourceTree = "<group>"; };
 		451C9BE22CC5178900AD3F19 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		451C9BE72CC5178A00AD3F19 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		451C9BED2CC5178A00AD3F19 /* JournaliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JournaliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		451C9BED2CC5178A00AD3F19 /* Journal AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Journal AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C9BF12CC5178A00AD3F19 /* Journal_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal_AppTests.swift; sourceTree = "<group>"; };
-		451C9BF72CC5178A00AD3F19 /* JournaliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JournaliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		451C9BF72CC5178A00AD3F19 /* Journal AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Journal AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C9BFB2CC5178A00AD3F19 /* Journal_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal_AppUITests.swift; sourceTree = "<group>"; };
 		451C9BFD2CC5178A00AD3F19 /* Journal_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		451C9C122CC7743400AD3F19 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; tabWidth = 3; };
+		451C9C122CC7743400AD3F19 /* Main2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main2.swift; sourceTree = "<group>"; tabWidth = 3; };
 		456074252CCEE876000D4749 /* JournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewModel.swift; sourceTree = "<group>"; };
-		4560742D2CD05B3D000D4749 /* AddJournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJournalEntryView.swift; sourceTree = "<group>"; };
+		456074272CCF6F8E000D4749 /* ModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelView.swift; sourceTree = "<group>"; };
 		4582DD382CC941FA0036BA7C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		459C10E92CCEE43A003189AD /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,9 +92,9 @@
 		451C9BDE2CC5178900AD3F19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				451C9BDD2CC5178900AD3F19 /* Journali.app */,
-				451C9BED2CC5178A00AD3F19 /* JournaliTests.xctest */,
-				451C9BF72CC5178A00AD3F19 /* JournaliUITests.xctest */,
+				451C9BDD2CC5178900AD3F19 /* Journal App.app */,
+				451C9BED2CC5178A00AD3F19 /* Journal AppTests.xctest */,
+				451C9BF72CC5178A00AD3F19 /* Journal AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,12 +102,12 @@
 		451C9BDF2CC5178900AD3F19 /* Journal App */ = {
 			isa = PBXGroup;
 			children = (
-				451C9BE02CC5178900AD3F19 /* JournalApp.swift */,
+				456074272CCF6F8E000D4749 /* ModelView.swift */,
 				459C10E92CCEE43A003189AD /* JournalEntry.swift */,
-				451C9BE22CC5178900AD3F19 /* ContentView.swift */,
-				451C9C122CC7743400AD3F19 /* MainView.swift */,
-				4560742D2CD05B3D000D4749 /* AddJournalEntryView.swift */,
 				456074252CCEE876000D4749 /* JournalViewModel.swift */,
+				451C9BE02CC5178900AD3F19 /* Journal_AppApp.swift */,
+				451C9BE22CC5178900AD3F19 /* ContentView.swift */,
+				451C9C122CC7743400AD3F19 /* Main2.swift */,
 				4582DD382CC941FA0036BA7C /* Media.xcassets */,
 				451C9BE62CC5178A00AD3F19 /* Preview Content */,
 			);
@@ -142,9 +142,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		451C9BDC2CC5178900AD3F19 /* Journali */ = {
+		451C9BDC2CC5178900AD3F19 /* Journal App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 451C9C012CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journali" */;
+			buildConfigurationList = 451C9C012CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journal App" */;
 			buildPhases = (
 				451C9BD92CC5178900AD3F19 /* Sources */,
 				451C9BDA2CC5178900AD3F19 /* Frameworks */,
@@ -154,14 +154,14 @@
 			);
 			dependencies = (
 			);
-			name = Journali;
+			name = "Journal App";
 			productName = "Journal App";
-			productReference = 451C9BDD2CC5178900AD3F19 /* Journali.app */;
+			productReference = 451C9BDD2CC5178900AD3F19 /* Journal App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		451C9BEC2CC5178A00AD3F19 /* JournaliTests */ = {
+		451C9BEC2CC5178A00AD3F19 /* Journal AppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 451C9C042CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "JournaliTests" */;
+			buildConfigurationList = 451C9C042CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journal AppTests" */;
 			buildPhases = (
 				451C9BE92CC5178A00AD3F19 /* Sources */,
 				451C9BEA2CC5178A00AD3F19 /* Frameworks */,
@@ -172,14 +172,14 @@
 			dependencies = (
 				451C9BEF2CC5178A00AD3F19 /* PBXTargetDependency */,
 			);
-			name = JournaliTests;
+			name = "Journal AppTests";
 			productName = "Journal AppTests";
-			productReference = 451C9BED2CC5178A00AD3F19 /* JournaliTests.xctest */;
+			productReference = 451C9BED2CC5178A00AD3F19 /* Journal AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		451C9BF62CC5178A00AD3F19 /* JournaliUITests */ = {
+		451C9BF62CC5178A00AD3F19 /* Journal AppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 451C9C072CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "JournaliUITests" */;
+			buildConfigurationList = 451C9C072CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journal AppUITests" */;
 			buildPhases = (
 				451C9BF32CC5178A00AD3F19 /* Sources */,
 				451C9BF42CC5178A00AD3F19 /* Frameworks */,
@@ -190,9 +190,9 @@
 			dependencies = (
 				451C9BF92CC5178A00AD3F19 /* PBXTargetDependency */,
 			);
-			name = JournaliUITests;
+			name = "Journal AppUITests";
 			productName = "Journal AppUITests";
-			productReference = 451C9BF72CC5178A00AD3F19 /* JournaliUITests.xctest */;
+			productReference = 451C9BF72CC5178A00AD3F19 /* Journal AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -218,7 +218,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 451C9BD82CC5178900AD3F19 /* Build configuration list for PBXProject "Journali" */;
+			buildConfigurationList = 451C9BD82CC5178900AD3F19 /* Build configuration list for PBXProject "Journal App" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -231,9 +231,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				451C9BDC2CC5178900AD3F19 /* Journali */,
-				451C9BEC2CC5178A00AD3F19 /* JournaliTests */,
-				451C9BF62CC5178A00AD3F19 /* JournaliUITests */,
+				451C9BDC2CC5178900AD3F19 /* Journal App */,
+				451C9BEC2CC5178A00AD3F19 /* Journal AppTests */,
+				451C9BF62CC5178A00AD3F19 /* Journal AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,12 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				456074282CCF6F8E000D4749 /* ModelView.swift in Sources */,
 				456074262CCEE876000D4749 /* JournalViewModel.swift in Sources */,
 				451C9BE32CC5178900AD3F19 /* ContentView.swift in Sources */,
-				451C9C132CC7743400AD3F19 /* MainView.swift in Sources */,
-				4560742E2CD05B3D000D4749 /* AddJournalEntryView.swift in Sources */,
+				451C9C132CC7743400AD3F19 /* Main2.swift in Sources */,
 				459C10EA2CCEE43A003189AD /* JournalEntry.swift in Sources */,
-				451C9BE12CC5178900AD3F19 /* JournalApp.swift in Sources */,
+				451C9BE12CC5178900AD3F19 /* Journal_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,12 +300,12 @@
 /* Begin PBXTargetDependency section */
 		451C9BEF2CC5178A00AD3F19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 451C9BDC2CC5178900AD3F19 /* Journali */;
+			target = 451C9BDC2CC5178900AD3F19 /* Journal App */;
 			targetProxy = 451C9BEE2CC5178A00AD3F19 /* PBXContainerItemProxy */;
 		};
 		451C9BF92CC5178A00AD3F19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 451C9BDC2CC5178900AD3F19 /* Journali */;
+			target = 451C9BDC2CC5178900AD3F19 /* Journal App */;
 			targetProxy = 451C9BF82CC5178A00AD3F19 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -501,7 +501,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Journali.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Journali";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Journal App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Journal App";
 			};
 			name = Debug;
 		};
@@ -520,7 +520,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Journali.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Journali";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Journal App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Journal App";
 			};
 			name = Release;
 		};
@@ -561,7 +561,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		451C9BD82CC5178900AD3F19 /* Build configuration list for PBXProject "Journali" */ = {
+		451C9BD82CC5178900AD3F19 /* Build configuration list for PBXProject "Journal App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				451C9BFF2CC5178A00AD3F19 /* Debug */,
@@ -570,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		451C9C012CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journali" */ = {
+		451C9C012CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journal App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				451C9C022CC5178A00AD3F19 /* Debug */,
@@ -579,7 +579,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		451C9C042CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "JournaliTests" */ = {
+		451C9C042CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journal AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				451C9C052CC5178A00AD3F19 /* Debug */,
@@ -588,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		451C9C072CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "JournaliUITests" */ = {
+		451C9C072CC5178A00AD3F19 /* Build configuration list for PBXNativeTarget "Journal AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				451C9C082CC5178A00AD3F19 /* Debug */,

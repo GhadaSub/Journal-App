@@ -3,36 +3,32 @@
 //  Journal App
 //
 //  Created by Ghada Alsubaie on 19/04/1446 AH.
-// this is Mai2 page
 
 import SwiftUI
 import SwiftData
 
-
-struct Main2: View {
+struct MainView: View {
     @Environment(\.modelContext) var modelContext
-    
     @EnvironmentObject var viewModel: JournalViewModel
     @State private var searchText = ""
-    @State private var filterOption: FilterOption = .all
+    @State private var filterOption: FilterOption = .All
     @State private var showAddEntry = false
     @State private var isEditing = false
     @State private var selectedEntry: JournalEntry? = nil
-    @Query private var item: [JournalEntry]
- 
+
     enum FilterOption: String, CaseIterable {
-        case all, bookmarked, recent
+        case All, Bookmarked, Date
     }
 
     var filteredEntries: [JournalEntry] {
         var filtered = viewModel.myJournalEntries
 
         switch filterOption {
-        case .bookmarked:
+        case .Bookmarked:
             filtered = filtered.filter { $0.isBookmarked }
-        case .recent:
+        case .Date:
             filtered = filtered.sorted { $0.date > $1.date }
-        case .all:
+        case .All:
             break
         }
 
@@ -58,12 +54,12 @@ struct Main2: View {
                         ZStack {
                             Circle()
                                 .fill(Color.gray.opacity(0.3))
-                                .frame(width: 44, height: 44)
+                                .frame(width: 40, height: 40)
 
                             Menu {
                                 ForEach(FilterOption.allCases, id: \.self) { option in
                                     Button(action: {
-                                        filterOption = (filterOption == option) ? .all : option
+                                        filterOption = (filterOption == option) ? .All : option
                                     }) {
                                         HStack {
                                             Text(option.rawValue.capitalized)
@@ -83,7 +79,7 @@ struct Main2: View {
                         ZStack {
                             Circle()
                                 .fill(Color.gray.opacity(0.3))
-                                .frame(width: 44, height: 44)
+                                .frame(width: 35, height: 35)
 
                             Button(action: {
                                 isEditing = false
@@ -101,7 +97,7 @@ struct Main2: View {
                             }
                         }
                     }
-                    .padding()
+                    .padding(5)
 
                     HStack {
                         Text("Journal")
@@ -111,29 +107,6 @@ struct Main2: View {
                             .padding(.top, -50)
                             .padding(.leading)
                         Spacer()
-                    }
-
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(width: 370, height: 50)
-
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.gray)
-                                .padding(.leading, 10.0)
-
-                            TextField("Search", text: $searchText)
-                                .foregroundColor(.white)
-                                .padding(10)
-
-                            Button(action: {}) {
-                                Image(systemName: "mic")
-                                    .foregroundColor(.gray)
-                                    .padding(.trailing, 10)
-                            }
-                        }
-                        .padding(.horizontal)
                     }
 
                     if viewModel.myJournalEntries.isEmpty {
@@ -147,14 +120,11 @@ struct Main2: View {
                             Text("Begin Your Journal")
                                 .foregroundColor(.lvndr)
                                 .font(.system(size: 24))
-                                .font(.title)
                                 .fontWeight(.bold)
-                                
 
                             Text("Craft your personal diary, tap the plus icon to begin")
                                 .font(.system(size: 18))
                                 .foregroundColor(.white)
-                                .font(.subheadline)
                                 .multilineTextAlignment(.center)
                                 .padding(.top, -55)
                                 .padding(.horizontal, 40)
@@ -164,6 +134,30 @@ struct Main2: View {
                         }
                         .padding(.top, -60)
                     } else {
+                        // Show search bar when there are entries
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.gray.opacity(0.2))
+                                .frame(width: 370, height: 50)
+
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundColor(.gray)
+                                    .padding(.leading, 10.0)
+
+                                TextField("Search", text: $searchText)
+                                    .foregroundColor(.white)
+                                    .padding(10)
+
+                                Button(action: {}) {
+                                    Image(systemName: "mic")
+                                        .foregroundColor(.gray)
+                                        .padding(.trailing, 10)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+
                         List {
                             ForEach(filteredEntries) { entry in
                                 JournalRow(entry: entry) {
@@ -179,7 +173,7 @@ struct Main2: View {
                                     } label: {
                                         Image(systemName: "pencil")
                                     }
-                                    .tint(.blue)
+                                    .tint(.editpurple)
                                 }
                                 .swipeActions(edge: .trailing) {
                                     Button(role: .destructive) {
@@ -220,6 +214,9 @@ struct JournalRow: View {
             Spacer()
             Button(action: toggleBookmark) {
                 Image(systemName: entry.isBookmarked ? "bookmark.fill" : "bookmark")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 23, height: 23)
                     .foregroundColor(entry.isBookmarked ? .lvndr : .lvndr)
             }
             .buttonStyle(PlainButtonStyle())
@@ -235,9 +232,7 @@ struct JournalRow: View {
 }
 
 #Preview {
-    Main2()
+    MainView()
         .environmentObject(JournalViewModel()) // Add this
         .modelContainer(for: JournalEntry.self)
 }
-
-

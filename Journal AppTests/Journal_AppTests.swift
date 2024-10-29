@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Journal_App
+@testable import Journali
 
 final class Journal_AppTests: XCTestCase {
 

@@ -6,17 +6,22 @@
 
 import SwiftUI
 import Combine
+import SwiftData
 
 class JournalViewModel: ObservableObject {
     @Published var myJournalEntries: [JournalEntry] = []
-
+    
     init() {
-        // Initial entries if needed
+        loadEntries()
     }
 
-    func addEntry(title: String, content: String) {
+    func loadEntries() {
+    }
+
+    func addEntry(title: String, content: String, context: ModelContext) {
         let newEntry = JournalEntry(title: title, date: dateFormatted(Date()), content: content)
         myJournalEntries.append(newEntry)
+        context.insert(newEntry)
     }
 
     func updateEntry(_ entry: JournalEntry, with newEntry: JournalEntry) {
@@ -41,4 +46,3 @@ class JournalViewModel: ObservableObject {
         return formatter.string(from: date)
     }
 }
-

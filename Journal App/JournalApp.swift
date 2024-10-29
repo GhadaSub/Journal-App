@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct Journal_AppApp: App {
+struct JournalApp: App {
     @StateObject private var viewModel = JournalViewModel()
 
     var body: some Scene {

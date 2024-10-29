@@ -6,13 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    @Environment(\.modelContext) var context
+    @EnvironmentObject var viewModel: JournalViewModel
 
-#Preview {
-    MainView()
+    var body: some View {
+        VStack {
+            // Your other UI components...
+
+            Button("Add Journal Entry") {
+                // Call the addEntry method and pass the context
+                viewModel.addEntry(title: "Sample Title", content: "Sample Content", context: context)
+            }
+        }
+    }
 }
