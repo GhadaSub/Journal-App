@@ -3,9 +3,10 @@
 //  Journal App
 //
 //  Created by Ghada Alsubaie on 17/04/1446 AH.
-//
+// this is my Journal_AppApp
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Journal_AppApp: App {
@@ -15,6 +16,7 @@ struct Journal_AppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
+                .modelContainer(for: JournalEntry.self)
         }
     }
 }
